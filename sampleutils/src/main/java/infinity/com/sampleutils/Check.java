@@ -1,5 +1,6 @@
 package infinity.com.sampleutils;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -10,10 +11,10 @@ import android.util.Log;
 
 import java.util.Locale;
 
-import name.github.emulatorDetector.EmulatorDetector;
-import name.github.model.Params;
-import name.github.rest.ApiInterface;
-import name.github.rest.WeatherApi;
+import infinity.com.sampleutils.emulatorDetector.EmulatorDetector;
+import infinity.com.sampleutils.model.Params;
+import infinity.com.sampleutils.rest.ApiInterface;
+import infinity.com.sampleutils.rest.WeatherApi;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -54,6 +55,7 @@ public class Check {
         ApiInterface apiInterface  = WeatherApi.getClient().create(ApiInterface.class);
         Call<Params> callData = apiInterface.getLocation();
         callData.enqueue(new Callback<Params>() {
+            @TargetApi(Build.VERSION_CODES.N)
             @Override
             public void onResponse(final Call<Params> call, Response<Params> response) {
                 params = response.body();

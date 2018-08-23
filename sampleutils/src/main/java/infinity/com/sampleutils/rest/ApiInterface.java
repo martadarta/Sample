@@ -1,6 +1,6 @@
 package infinity.com.sampleutils.rest;
 
-import name.github.model.Params;
+import infinity.com.sampleutils.model.Params;
 import retrofit2.Call;
 import retrofit2.http.GET;
 
