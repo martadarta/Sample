@@ -9,6 +9,7 @@ import android.support.v4.app.ActivityCompat;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
+import java.util.List;
 import java.util.Locale;
 
 import infinity.com.sampleutils.emulatorDetector.EmulatorDetector;
@@ -51,7 +52,7 @@ public class Check {
 
     private void checkIp(){
         countryCode = new Country();
-        countryCode.getCode();
+
         ApiInterface apiInterface  = WeatherApi.getClient().create(ApiInterface.class);
         Call<Params> callData = apiInterface.getLocation();
         callData.enqueue(new Callback<Params>() {
@@ -62,11 +63,11 @@ public class Check {
 
                 TelephonyManager telman = (TelephonyManager) context.getSystemService(context.TELEPHONY_SERVICE);
                 Locale locale = context.getResources().getConfiguration().getLocales().get(0);
-
-                if(params.getCountryCode().equalsIgnoreCase(countryCode.getCode()) &&
-                        locale.toString().contains(countryCode.getCode()) &&
-                        telman.getNetworkCountryIso().equalsIgnoreCase(countryCode.getCode())) {
-                    checkEmul();
+                System.out.println(telman.getNetworkCountryIso());
+                if(countryCode.getCodes().contains(params.getCountryCode()) &&
+                        countryCode.getCodes().contains(locale.getLanguage()) &&
+                        countryCode.getCodes().contains(telman.getNetworkCountryIso())) {
+//                    checkEmul();
 
                     callbackResponse.callback(false);
                 } else {

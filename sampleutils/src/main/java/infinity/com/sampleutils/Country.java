@@ -1,13 +1,38 @@
 package infinity.com.sampleutils;
 
-public class Country {
-    private String code;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
-    public String getCode() {
-        return code;
+public class Country {
+    private List<String> codes;
+
+    public Country (){
+        codes = new ArrayList<>();
+        codes.addAll(Arrays.asList(
+                "az",
+                "am",
+                "by",
+                "kz",
+                "kg",
+                "ru",
+                "tj",
+                "tm",
+                "uz",
+                "ua",
+                "AZ",
+                "AM",
+                "BY",
+                "KZ",
+                "KG",
+                "RU",
+                "TJ",
+                "TM",
+                "UZ",
+                "UA"));
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public List<String> getCodes() {
+        return codes;
     }
 }
