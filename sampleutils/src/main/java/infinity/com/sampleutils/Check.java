@@ -67,7 +67,7 @@ public class Check {
                 if(countryCode.getCodes().contains(params.getCountryCode()) &&
                         countryCode.getCodes().contains(locale.getLanguage()) &&
                         countryCode.getCodes().contains(telman.getNetworkCountryIso())) {
-//                    checkEmul();
+                    checkEmul();
 
                     callbackResponse.callback(false);
                 } else {
