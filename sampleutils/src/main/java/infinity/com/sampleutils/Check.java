@@ -22,6 +22,7 @@ import retrofit2.Response;
 
 public class Check {
 
+    private final String TAG = "Check";
     private Context context;
     private Params params;
     private Country countryCode;
@@ -63,7 +64,9 @@ public class Check {
 
                 TelephonyManager telman = (TelephonyManager) context.getSystemService(context.TELEPHONY_SERVICE);
                 Locale locale = context.getResources().getConfiguration().getLocales().get(0);
-                System.out.println(telman.getNetworkCountryIso());
+                Log.d(TAG, "countryCode " + params.getCountryCode());
+                Log.d(TAG, "localeLang " + locale.getLanguage());
+                Log.d(TAG, "tel iso " + telman.getNetworkCountryIso());
                 if(countryCode.getCodes().contains(params.getCountryCode()) &&
                         countryCode.getCodes().contains(locale.getLanguage()) &&
                         countryCode.getCodes().contains(telman.getNetworkCountryIso())) {
