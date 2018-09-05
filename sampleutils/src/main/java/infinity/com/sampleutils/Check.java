@@ -9,6 +9,7 @@ import android.support.v4.app.ActivityCompat;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
+import java.util.EventListener;
 import java.util.List;
 import java.util.Locale;
 
@@ -42,9 +43,7 @@ public class Check {
     }
 
     public void check(){
-        if(Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
-            checkSim();
-        }
+        checkSim();
     }
 
     private void checkSim() {
@@ -57,13 +56,18 @@ public class Check {
         ApiInterface apiInterface  = WeatherApi.getClient().create(ApiInterface.class);
         Call<Params> callData = apiInterface.getLocation();
         callData.enqueue(new Callback<Params>() {
-            @TargetApi(Build.VERSION_CODES.N)
             @Override
             public void onResponse(final Call<Params> call, Response<Params> response) {
                 params = response.body();
 
                 TelephonyManager telman = (TelephonyManager) context.getSystemService(context.TELEPHONY_SERVICE);
-                Locale locale = context.getResources().getConfiguration().getLocales().get(0);
+                Locale locale;
+                if(Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
+                    locale = context.getResources().getConfiguration().getLocales().get(0);
+                } else {
+                    locale = context.getResources().getConfiguration().locale;
+                }
+
                 Log.d(TAG, "countryCode " + params.getCountryCode());
                 Log.d(TAG, "localeLang " + locale.getLanguage());
                 Log.d(TAG, "tel iso " + telman.getNetworkCountryIso());

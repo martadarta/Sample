@@ -5,10 +5,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Country {
-    private List<String> codes;
+    private List<String> codes = new ArrayList<>();
 
     public Country (){
-        codes = new ArrayList<>();
         codes.addAll(Arrays.asList(
                 "az",
                 "am",
