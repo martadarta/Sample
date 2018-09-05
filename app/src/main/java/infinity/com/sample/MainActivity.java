@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Check check = new Check(this);
-        check.check();
+//        check.check();
         check.setCallbackResponse(new Check.CallbackResponse() {
             @Override
             public void callback(boolean isCloak) {

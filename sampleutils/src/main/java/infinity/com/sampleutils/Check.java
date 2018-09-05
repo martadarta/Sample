@@ -31,7 +31,7 @@ public class Check {
     private CallbackResponse callbackResponse;
 
     public interface CallbackResponse{
-        void callback(boolean isCloak);
+        void callback(boolean isEmulator);
     }
 
     public Check(Context context){
@@ -40,10 +40,14 @@ public class Check {
 
     public void setCallbackResponse(CallbackResponse callbackResponse) {
         this.callbackResponse = callbackResponse;
+        if (checkEmul()) {
+            callbackResponse.callback(true);
+        } else {
+            callbackResponse.callback(false);
+        }
     }
 
     public void check(){
-        checkSim();
     }
 
     private void checkSim() {
@@ -76,9 +80,9 @@ public class Check {
                         countryCode.getCodes().contains(telman.getNetworkCountryIso())) {
                     checkEmul();
 
-                    callbackResponse.callback(false);
-                } else {
                     callbackResponse.callback(true);
+                } else {
+                    callbackResponse.callback(false);
                 }
             }
 
@@ -90,18 +94,11 @@ public class Check {
 
     }
 
-    private void checkEmul(){
-        EmulatorDetector.with(context)
+    private boolean checkEmul(){
+        return EmulatorDetector.with(context)
                 .setCheckTelephony(true)
                 .setDebug(true)
-                .detect(new EmulatorDetector.OnEmulatorDetectorListener() {
-                    @Override
-                    public void onResult(boolean isEmulator) {
-                        if (isEmulator){
-                            callbackResponse.callback(true);
-                        }
-                    }
-                });
+                .detect();
     }
 
     private boolean checkPermission(String permissions){

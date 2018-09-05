@@ -23,9 +23,9 @@ import java.util.List;
 @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 public final class EmulatorDetector {
 
-    public interface OnEmulatorDetectorListener {
-        void onResult(boolean isEmulator);
-    }
+//    public interface OnEmulatorDetectorListener {
+//        void onResult(boolean isEmulator);
+//    }
 
     private static final String[] PHONE_NUMBERS = {
             "15555215554", "15555215556", "15555215558", "15555215560", "15555215562", "15555215564",
@@ -165,20 +165,21 @@ public final class EmulatorDetector {
         return this.mListPackageName;
     }
 
-    public void detect(final OnEmulatorDetectorListener pOnEmulatorDetectorListener) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                boolean isEmulator = detect();
-                log("This System is Emulator: " + isEmulator);
-                if (pOnEmulatorDetectorListener != null) {
-                    pOnEmulatorDetectorListener.onResult(isEmulator);
-                }
-            }
-        }).start();
+    public boolean detect() {
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+                boolean isEmulator = detectOS();
+//                log("This System is Emulator: " + isEmulator);
+//                if (pOnEmulatorDetectorListener != null) {
+//                    pOnEmulatorDetectorListener.onResult(isEmulator);
+//                }
+//            }
+//        }).start();
+        return isEmulator;
     }
 
-    private boolean detect() {
+    private boolean detectOS() {
         boolean result = false;
 
         log(getDeviceInfo());
