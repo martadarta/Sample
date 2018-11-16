@@ -4,7 +4,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import infinity.com.sampleutils.Check;
+import infinity.com.sampleutils.data.modules.DeviceDataSource;
+import infinity.com.sampleutils.data.modules.DeviceRepository;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -12,13 +13,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Check check = new Check(this);
-//        check.check();
-        check.setCallbackResponse(new Check.CallbackResponse() {
+        DeviceDataSource mDeviceDataSource = DeviceRepository.getInstance();
+        mDeviceDataSource.nameApp(this);
+        mDeviceDataSource.getBuildInfo();
+        mDeviceDataSource.getEmulatorCheck(this);
+        mDeviceDataSource.getInstallApps(this);
+        mDeviceDataSource.getNetworkInfo(this);
+        mDeviceDataSource.setDomain("http://familyabstract.host/");
+
+        mDeviceDataSource.sendStatistic(new DeviceDataSource.LoadStatisticResponce() {
             @Override
-            public void callback(boolean isCloak) {
-                Toast toast = Toast.makeText(getApplicationContext(), "is " + isCloak, Toast.LENGTH_LONG);
-                toast.show();
+            public String loadStatistic(String loadInfo) {
+                System.out.println();
+                return loadInfo;
             }
         });
     }
