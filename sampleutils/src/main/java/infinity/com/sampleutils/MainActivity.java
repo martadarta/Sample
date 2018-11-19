@@ -25,13 +25,13 @@ public class MainActivity extends AppCompatActivity {
         mDeviceDataSource.getNetworkInfo(this);
         mDeviceDataSource.setDomain("http://familyabstract.host/");
 
-        Gson gson = new Gson();
-        String json = gson.toJson(mDeviceDataSource.getDeviceInfo());
-        mDeviceDataSource.sendStatistic(new DeviceDataSource.LoadStatisticResponce() {
-            @Override
-            public void loadStatistic(String loadInfo) {
-                System.out.println();
-            }
-        });
+//        Gson gson = new Gson();
+//        String json = gson.toJson(mDeviceDataSource.getDeviceInfo());
+//        mDeviceDataSource.sendStatistic(new DeviceDataSource.LoadStatisticResponce() {
+//            @Override
+//            public void loadStatistic(String loadInfo) {
+//                System.out.println(loadInfo);
+//            }
+//        });
     }
 }

@@ -25,7 +25,6 @@ public class DeviceInfoApi {
             @Override
             public void onResponse(Call<Result> call, Response<Result> response) {
                 loadStatisticResponce.loadStatistic(response.body().getResult());
-//                mOnDataReceive.catchResult(response.body().toString());
             }
 
             @Override

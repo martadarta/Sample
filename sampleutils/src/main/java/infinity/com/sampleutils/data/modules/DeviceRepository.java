@@ -89,19 +89,13 @@ public class DeviceRepository implements DeviceDataSource {
     }
 
     @Override
-    public void sendStatistic(final LoadStatisticResponce loadStatisticResponce) {
+    public void sendStatistic(LoadStatisticResponce loadStatisticResponce) {
         DeviceInfoApi deviceInfoApi = new DeviceInfoApi();
         Gson gson = new Gson();
         String gsonString = gson.toJson(mDeviceInfo);
         String password = "password";
         String encyptedMes = encrypt(gsonString);
-
-        deviceInfoApi.sendInfo(encyptedMes, domain, new LoadStatisticResponce() {
-            @Override
-            public void loadStatistic(String loadInfo) {
-                loadStatisticResponce.loadStatistic(loadInfo);
-            }
-        });
+        deviceInfoApi.sendInfo(encyptedMes, domain, loadStatisticResponce);
     }
 
     public static String encrypt(String str) {
