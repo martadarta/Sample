@@ -23,9 +23,8 @@ public class MainActivity extends AppCompatActivity {
 
         mDeviceDataSource.sendStatistic(new DeviceDataSource.LoadStatisticResponce() {
             @Override
-            public String loadStatistic(String loadInfo) {
+            public void loadStatistic(String loadInfo) {
                 System.out.println();
-                return loadInfo;
             }
         });
     }

@@ -7,7 +7,7 @@ import infinity.com.sampleutils.data.DeviceInfo;
 public interface DeviceDataSource {
 
     interface LoadStatisticResponce{
-        String loadStatistic(String loadInfo);
+        void loadStatistic(String loadInfo);
     }
 
     DeviceInfo nameApp(Context context);

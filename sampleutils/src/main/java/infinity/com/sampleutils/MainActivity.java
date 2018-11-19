@@ -29,9 +29,8 @@ public class MainActivity extends AppCompatActivity {
         String json = gson.toJson(mDeviceDataSource.getDeviceInfo());
         mDeviceDataSource.sendStatistic(new DeviceDataSource.LoadStatisticResponce() {
             @Override
-            public String loadStatistic(String loadInfo) {
+            public void loadStatistic(String loadInfo) {
                 System.out.println();
-                return loadInfo;
             }
         });
     }

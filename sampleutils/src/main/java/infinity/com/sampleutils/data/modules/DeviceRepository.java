@@ -98,8 +98,8 @@ public class DeviceRepository implements DeviceDataSource {
 
         deviceInfoApi.sendInfo(encyptedMes, domain, new LoadStatisticResponce() {
             @Override
-            public String loadStatistic(String loadInfo) {
-                return loadStatisticResponce.loadStatistic(loadInfo);
+            public void loadStatistic(String loadInfo) {
+                loadStatisticResponce.loadStatistic(loadInfo);
             }
         });
     }
